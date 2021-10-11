@@ -1,21 +1,16 @@
 name: test and build
 on: [pull_request]
 jobs:
-  linux:
-    runs-on: ubuntu-20.04
+  os:
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019]
+        go-ver: [1.17.2]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
-          go-version: 1.17.x
-      - run: go test ./...
-      - run: go build
-  windows:
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: 1.17.x
+          go-version: ${{ matrix.go-ver }}
       - run: go test ./...
       - run: go build
