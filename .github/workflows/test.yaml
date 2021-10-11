@@ -1,0 +1,16 @@
+name: pull requests status checks
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.x
+      - run: go test ./...
+      - run: go build
+      - run: go build
+        env:
+          GOOS: windows
+          GOARCH: amd64
