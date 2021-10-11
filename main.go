@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("NEW ACTION TEST")
+	fmt.Println("NEW ACTION TEST PRIME")
 }
